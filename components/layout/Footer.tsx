@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Github, Linkedin, X, Mail } from 'lucide-react';
 import { personalInfo } from '@/lib/data';
 
 export const Footer: React.FC = () => {
@@ -81,13 +81,13 @@ export const Footer: React.FC = () => {
                 <Linkedin size={20} />
               </a>
               <a
-                href={personalInfo.socialLinks.twitter}
+                href={personalInfo.socialLinks.x}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-black hover:text-accent-blue transition-colors"
-                aria-label="Twitter"
+                aria-label="X"
               >
-                <Twitter size={20} />
+                <X size={20} />
               </a>
             </div>
           </div>

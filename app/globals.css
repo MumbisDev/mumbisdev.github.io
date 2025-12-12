@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-neutral-200;
+  }
+
+  body {
+    @apply bg-white text-black font-primary;
+    font-size: 14px;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+  }
+
+  h1 {
+    @apply text-h1 font-light uppercase tracking-wider;
+  }
+
+  h2 {
+    @apply text-h2 font-light uppercase tracking-wider;
+  }
+
+  h3 {
+    @apply text-h3 font-normal uppercase tracking-wider;
+  }
+
+  .dark {
+    @apply bg-neutral-800 text-white;
+  }
+
+  .dark body {
+    @apply bg-neutral-800 text-white;
+  }
+
+  .dark .bg-white {
+    @apply bg-neutral-700;
+  }
+
+  .dark .text-black {
+    @apply text-white;
+  }
+
+  .dark .border-neutral-200 {
+    @apply border-neutral-600;
+  }
+
+  .dark .border-neutral-300 {
+    @apply border-neutral-600;
+  }
+
+  .dark .text-neutral-500 {
+    @apply text-neutral-400;
+  }
+
+  .dark .bg-neutral-100 {
+    @apply bg-neutral-700;
+  }
+}
+
+@layer utilities {
+  .max-w-container {
+    max-width: 1440px;
+  }
+}
+

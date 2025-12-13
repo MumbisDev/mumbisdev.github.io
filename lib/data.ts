@@ -127,7 +127,7 @@ export const personalInfo = {
   bio: 'After completing App Academy\'s coding bootcamp, I\'ve been passionate about learning to code and building modern web applications. I leverage Cursor and AI tools to create efficient and high-quality applications that solve real-world problems.',
   email: 'zillcrumpton@gmail.com',
   location: 'Danville, VA',
-  resumeUrl: '/Zildjian_Crumpton_Resume.pdf',
+  resumeUrl: '/Zildjian_Crumpton.pdf',
   socialLinks: {
     github: 'https://github.com/MumbisDev',
     linkedin: 'https://linkedin.com/in/oliver-crumpton',

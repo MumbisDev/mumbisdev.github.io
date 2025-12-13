@@ -10,7 +10,6 @@ export default function AboutPage() {
     frontend: skills.filter((s) => s.category === 'frontend'),
     backend: skills.filter((s) => s.category === 'backend'),
     tools: skills.filter((s) => s.category === 'tools'),
-    design: skills.filter((s) => s.category === 'design'),
   };
 
   return (

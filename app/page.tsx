@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { projects, personalInfo } from '@/lib/data';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Monitor, Sparkles } from 'lucide-react';
 
 export default function HomePage() {
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
@@ -15,21 +15,21 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section - Brutalist Asymmetric */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-brutal-cream dark:bg-brutal-black">
         {/* Background geometric elements */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Large circle */}
-          <div className="absolute -right-32 -top-32 w-[500px] h-[500px] rounded-full border-[6px] border-accent-vermillion/20" />
+          <div className="absolute -right-32 -top-32 w-[500px] h-[500px] rounded-full border-[6px] border-accent-cyan/20" />
           {/* Grid lines */}
           <div className="absolute inset-0" style={{
             backgroundImage: `
-              linear-gradient(to right, rgba(45,45,45,0.3) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(45,45,45,0.3) 1px, transparent 1px)
+              linear-gradient(to right, rgba(45,45,45,0.1) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(45,45,45,0.1) 1px, transparent 1px)
             `,
             backgroundSize: '80px 80px'
           }} />
           {/* Diagonal accent */}
-          <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-brutal-black to-transparent" />
+          <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-brutal-cream dark:from-brutal-black to-transparent" />
         </div>
 
         {/* Banner Image with brutalist treatment */}
@@ -39,10 +39,10 @@ export default function HomePage() {
               src="/banner.png"
               alt="Banner"
               fill
-              className="object-cover opacity-30 md:opacity-50"
+              className="object-cover opacity-20 dark:opacity-50"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-brutal-black via-brutal-black/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-brutal-cream dark:from-brutal-black via-brutal-cream/80 dark:via-brutal-black/80 to-transparent" />
           </div>
         </div>
 
@@ -55,7 +55,7 @@ export default function HomePage() {
                 initial={{ y: 100 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, ease: [0.2, 0, 0, 1] }}
-                className="text-brutal-cream leading-[0.9]"
+                className="text-brutal-black dark:text-brutal-cream leading-[0.9]"
               >
                 {personalInfo.name.split(' ').map((word, i) => (
                   <span key={i} className="block">
@@ -79,7 +79,7 @@ export default function HomePage() {
                   {personalInfo.title}
                 </span>
               </div>
-              <p className="text-brutal-paper text-lg max-w-xl leading-relaxed font-body">
+              <p className="text-brutal-charcoal dark:text-brutal-paper text-lg max-w-xl leading-relaxed font-body">
                 Building digital experiences with raw authenticity and precise craftsmanship.
               </p>
             </motion.div>
@@ -102,7 +102,6 @@ export default function HomePage() {
               </Link>
             </motion.div>
           </div>
-
         </div>
 
         {/* Scroll indicator */}
@@ -124,7 +123,7 @@ export default function HomePage() {
       </section>
 
       {/* About Section */}
-      <section className="py-4xl bg-brutal-charcoal relative">
+      <section className="py-4xl bg-brutal-paper dark:bg-brutal-charcoal relative">
         {/* Geometric accent */}
         <div className="absolute top-0 right-0 w-48 h-48 border-4 border-accent-gold/20" />
         
@@ -138,12 +137,12 @@ export default function HomePage() {
           >
             <div>
               <span className="brutal-label mb-4 block">About Me</span>
-              <h2 className="text-brutal-cream mb-6">
+              <h2 className="text-brutal-black dark:text-brutal-cream mb-6">
                 Crafting<br />
                 <span className="text-accent-cyan">Digital</span><br />
                 Experiences
               </h2>
-              <p className="text-brutal-paper text-lg mb-8 leading-relaxed">
+              <p className="text-brutal-charcoal dark:text-brutal-paper text-lg mb-8 leading-relaxed">
                 {personalInfo.bio}
               </p>
               <Link href="/about">
@@ -157,11 +156,11 @@ export default function HomePage() {
             {/* Decorative element */}
             <div className="relative hidden lg:block">
               <div className="aspect-square relative">
-                <div className="absolute inset-0 border-4 border-brutal-cream" />
+                <div className="absolute inset-0 border-4 border-brutal-black dark:border-brutal-cream" />
                 <div className="absolute inset-4 border-4 border-accent-cyan" />
                 <div className="absolute inset-8 border-4 border-accent-gold" />
-                <div className="absolute inset-12 bg-brutal-ink flex items-center justify-center">
-                  <span className="font-display text-4xl text-brutal-cream">CREATE</span>
+                <div className="absolute inset-12 bg-brutal-stone/20 dark:bg-brutal-ink flex items-center justify-center">
+                  <span className="font-display text-4xl text-brutal-black dark:text-brutal-cream">CREATE</span>
                 </div>
               </div>
             </div>
@@ -170,7 +169,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-4xl bg-brutal-black relative">
+      <section className="py-4xl bg-brutal-cream dark:bg-brutal-black relative">
         <div className="container-brutal">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -182,14 +181,14 @@ export default function HomePage() {
             <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
               <div>
                 <span className="brutal-label mb-4 block">Selected Work</span>
-              <h2 className="text-brutal-cream">
-                Featured<br />
-                <span className="text-stroke text-accent-cyan">Projects</span>
-              </h2>
+                <h2 className="text-brutal-black dark:text-brutal-cream">
+                  Featured<br />
+                  <span className="text-stroke text-accent-cyan">Projects</span>
+                </h2>
               </div>
               <div className="mt-6 md:mt-0">
                 <Link href="/projects">
-                  <span className="font-display text-lg text-brutal-cream hover:text-accent-vermillion transition-colors flex items-center gap-2">
+                  <span className="font-display text-lg text-brutal-black dark:text-brutal-cream hover:text-accent-cyan transition-colors flex items-center gap-2">
                     View All
                     <ArrowRight className="w-5 h-5" />
                   </span>
@@ -210,21 +209,48 @@ export default function HomePage() {
                 >
                   <Card href={`/projects/${project.id}`} className="h-full flex flex-col overflow-hidden">
                     {/* Image container */}
-                    <div className="aspect-[4/3] bg-brutal-ink overflow-hidden relative">
-                      <Image
-                        src={project.images[0]}
-                        alt={project.title}
-                        fill
-                        className="object-contain transition-transform duration-500 group-hover:scale-105"
-                      />
-                      {/* Overlay on hover */}
-                      <div className="absolute inset-0 bg-accent-cyan/0 group-hover:bg-accent-cyan/10 transition-colors duration-300" />
+                    <div className="aspect-[4/3] bg-brutal-paper dark:bg-brutal-ink overflow-hidden relative">
+                      {project.isMetaProject ? (
+                        /* Special meta-project display */
+                        <div className="absolute inset-0 bg-gradient-to-br from-brutal-charcoal to-brutal-black flex flex-col items-center justify-center p-4">
+                          <motion.div
+                            animate={{ 
+                              boxShadow: ['0 0 0 0 rgba(0, 245, 255, 0)', '0 0 0 8px rgba(0, 245, 255, 0.3)', '0 0 0 0 rgba(0, 245, 255, 0)']
+                            }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                            className="w-16 h-16 border-3 border-accent-cyan flex items-center justify-center mb-3"
+                          >
+                            <Monitor className="w-8 h-8 text-accent-cyan" />
+                          </motion.div>
+                          <div className="flex items-center gap-2 text-accent-gold">
+                            <Sparkles className="w-4 h-4" />
+                            <span className="font-mono text-xs tracking-wider">LIVE NOW</span>
+                            <Sparkles className="w-4 h-4" />
+                          </div>
+                          {/* Decorative corners */}
+                          <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-accent-cyan/50" />
+                          <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-accent-cyan/50" />
+                          <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-accent-cyan/50" />
+                          <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-accent-cyan/50" />
+                        </div>
+                      ) : (
+                        <>
+                          <Image
+                            src={project.images[0]}
+                            alt={project.title}
+                            fill
+                            className="object-contain transition-transform duration-500 group-hover:scale-105"
+                          />
+                          {/* Overlay on hover */}
+                          <div className="absolute inset-0 bg-accent-cyan/0 group-hover:bg-accent-cyan/10 transition-colors duration-300" />
+                        </>
+                      )}
                     </div>
                     
                     {/* Content */}
                     <div className="p-6 flex flex-col flex-grow border-t-3 border-accent-cyan">
                       <span className="brutal-label mb-2">{project.category}</span>
-                      <h3 className="text-xl text-brutal-cream mb-3 group-hover:text-accent-gold transition-colors">
+                      <h3 className="text-xl text-brutal-black dark:text-brutal-cream mb-3 group-hover:text-accent-gold transition-colors">
                         {project.title}
                       </h3>
                       <p className="text-brutal-stone text-sm mb-4 flex-grow line-clamp-2">
@@ -234,7 +260,7 @@ export default function HomePage() {
                         {project.technologies.slice(0, 3).map((tech) => (
                           <span
                             key={tech}
-                            className="px-2 py-1 text-xs font-mono text-brutal-stone border border-brutal-ink"
+                            className="px-2 py-1 text-xs font-mono text-brutal-stone border border-brutal-charcoal dark:border-brutal-ink"
                           >
                             {tech}
                           </span>

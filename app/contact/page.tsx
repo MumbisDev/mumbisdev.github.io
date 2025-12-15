@@ -23,7 +23,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <div className="bg-brutal-black min-h-screen">
+      <div className="bg-brutal-cream dark:bg-brutal-black min-h-screen">
         {/* Hero */}
         <section className="py-4xl relative overflow-hidden">
           {/* Background geometric elements */}
@@ -39,10 +39,10 @@ export default function ContactPage() {
               {/* Header */}
               <div className="mb-16">
                 <span className="brutal-label mb-4 block">Get In Touch</span>
-              <h1 className="text-brutal-cream mb-6">
-                Contact<span className="text-accent-cyan">.</span>
-              </h1>
-                <p className="text-brutal-paper text-xl max-w-2xl">
+                <h1 className="text-brutal-black dark:text-brutal-cream mb-6">
+                  Contact<span className="text-accent-cyan">.</span>
+                </h1>
+                <p className="text-brutal-charcoal dark:text-brutal-paper text-xl max-w-2xl">
                   Have a project in mind or want to collaborate? Want your website to be designed like this one? Feel free to reach out. 
                   I&apos;m always open to discussing new opportunities.
                 </p>
@@ -57,7 +57,7 @@ export default function ContactPage() {
                 >
                   <div className="flex items-center gap-4 mb-8">
                     <div className="w-8 h-1 bg-accent-cyan" />
-                    <h2 className="text-2xl text-brutal-cream">Send a Message</h2>
+                    <h2 className="text-2xl text-brutal-black dark:text-brutal-cream">Send a Message</h2>
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
@@ -102,16 +102,16 @@ export default function ContactPage() {
                 >
                   <div className="flex items-center gap-4 mb-8">
                     <div className="w-8 h-1 bg-accent-gold" />
-                    <h2 className="text-2xl text-brutal-cream">Contact Info</h2>
+                    <h2 className="text-2xl text-brutal-black dark:text-brutal-cream">Contact Info</h2>
                   </div>
 
                   <div className="space-y-8">
                     {/* Email */}
-                    <div className="bg-brutal-charcoal p-6 border-l-4 border-accent-cyan">
+                    <div className="bg-white dark:bg-brutal-charcoal p-6 border-l-4 border-accent-cyan">
                       <span className="brutal-label mb-2 block">Email</span>
                       <a
                         href={`mailto:${personalInfo.email}`}
-                        className="flex items-center gap-3 text-brutal-cream hover:text-accent-cyan transition-colors text-lg"
+                        className="flex items-center gap-3 text-brutal-black dark:text-brutal-cream hover:text-accent-cyan transition-colors text-lg"
                       >
                         <Mail size={20} />
                         {personalInfo.email}
@@ -119,9 +119,9 @@ export default function ContactPage() {
                     </div>
 
                     {/* Location */}
-                    <div className="bg-brutal-charcoal p-6 border-l-4 border-accent-gold">
+                    <div className="bg-white dark:bg-brutal-charcoal p-6 border-l-4 border-accent-gold">
                       <span className="brutal-label mb-2 block">Location</span>
-                      <p className="flex items-center gap-3 text-brutal-cream text-lg">
+                      <p className="flex items-center gap-3 text-brutal-black dark:text-brutal-cream text-lg">
                         <MapPin size={20} />
                         {personalInfo.location}
                       </p>
@@ -135,7 +135,7 @@ export default function ContactPage() {
                           href={personalInfo.socialLinks.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-14 h-14 border-3 border-brutal-ink flex items-center justify-center text-brutal-cream 
+                          className="w-14 h-14 border-3 border-brutal-charcoal dark:border-brutal-ink flex items-center justify-center text-brutal-black dark:text-brutal-cream 
                                      hover:border-accent-cyan hover:text-accent-cyan hover:shadow-brutal-cyan
                                      hover:-translate-x-1 hover:-translate-y-1 transition-all duration-200"
                           aria-label="GitHub"
@@ -146,7 +146,7 @@ export default function ContactPage() {
                           href={personalInfo.socialLinks.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-14 h-14 border-3 border-brutal-ink flex items-center justify-center text-brutal-cream 
+                          className="w-14 h-14 border-3 border-brutal-charcoal dark:border-brutal-ink flex items-center justify-center text-brutal-black dark:text-brutal-cream 
                                      hover:border-accent-gold hover:text-accent-gold hover:shadow-brutal-gold
                                      hover:-translate-x-1 hover:-translate-y-1 transition-all duration-200"
                           aria-label="LinkedIn"
@@ -157,7 +157,7 @@ export default function ContactPage() {
                           href={personalInfo.socialLinks.x}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-14 h-14 border-3 border-brutal-ink flex items-center justify-center text-brutal-cream 
+                          className="w-14 h-14 border-3 border-brutal-charcoal dark:border-brutal-ink flex items-center justify-center text-brutal-black dark:text-brutal-cream 
                                      hover:border-accent-cyan hover:text-accent-cyan hover:shadow-brutal-cyan
                                      hover:-translate-x-1 hover:-translate-y-1 transition-all duration-200"
                           aria-label="X"
@@ -168,7 +168,7 @@ export default function ContactPage() {
                     </div>
 
                     {/* Resume Download */}
-                    <div className="pt-8 border-t border-brutal-ink">
+                    <div className="pt-8 border-t border-brutal-stone/30 dark:border-brutal-ink">
                       <a
                         href={personalInfo.resumeUrl}
                         download="Zildjian_Crumpton_Resume.pdf"
@@ -181,7 +181,6 @@ export default function ContactPage() {
                       </a>
                     </div>
                   </div>
-
                 </motion.div>
               </div>
             </motion.div>

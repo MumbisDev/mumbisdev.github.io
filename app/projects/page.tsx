@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Grid, List } from 'lucide-react';
+import { Grid, List, Monitor, Sparkles } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
 import { useProjects } from '@/hooks/useProjects';
@@ -21,7 +21,7 @@ export default function ProjectsPage() {
   } = useProjects();
 
   return (
-    <div className="bg-brutal-black min-h-screen">
+    <div className="bg-brutal-cream dark:bg-brutal-black min-h-screen">
       <section className="py-4xl relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute top-0 right-0 w-96 h-96 border-4 border-accent-cyan/10 rotate-45" />
@@ -35,7 +35,7 @@ export default function ProjectsPage() {
             {/* Header */}
             <div className="mb-16">
               <span className="brutal-label mb-4 block">Selected Work</span>
-              <h1 className="text-brutal-cream mb-6">
+              <h1 className="text-brutal-black dark:text-brutal-cream mb-6">
                 Projects<span className="text-accent-cyan">.</span>
               </h1>
             </div>
@@ -60,7 +60,7 @@ export default function ProjectsPage() {
                     className={`p-3 border-3 transition-all duration-200 ${
                       viewMode === 'grid'
                         ? 'bg-accent-cyan text-brutal-black border-accent-cyan'
-                        : 'border-brutal-ink text-brutal-stone hover:border-brutal-cream hover:text-brutal-cream'
+                        : 'border-brutal-charcoal dark:border-brutal-ink text-brutal-stone hover:border-brutal-black dark:hover:border-brutal-cream hover:text-brutal-black dark:hover:text-brutal-cream'
                     }`}
                     aria-label="Grid view"
                   >
@@ -71,7 +71,7 @@ export default function ProjectsPage() {
                     className={`p-3 border-3 transition-all duration-200 ${
                       viewMode === 'list'
                         ? 'bg-accent-cyan text-brutal-black border-accent-cyan'
-                        : 'border-brutal-ink text-brutal-stone hover:border-brutal-cream hover:text-brutal-cream'
+                        : 'border-brutal-charcoal dark:border-brutal-ink text-brutal-stone hover:border-brutal-black dark:hover:border-brutal-cream hover:text-brutal-black dark:hover:text-brutal-cream'
                     }`}
                     aria-label="List view"
                   >
@@ -89,7 +89,7 @@ export default function ProjectsPage() {
                     className={`px-5 py-2 font-display text-sm tracking-wider border-3 transition-all duration-200 ${
                       selectedCategory === category
                         ? 'bg-accent-cyan text-brutal-black border-accent-cyan'
-                        : 'bg-transparent text-brutal-stone border-brutal-ink hover:border-brutal-cream hover:text-brutal-cream'
+                        : 'bg-transparent text-brutal-stone border-brutal-charcoal dark:border-brutal-ink hover:border-brutal-black dark:hover:border-brutal-cream hover:text-brutal-black dark:hover:text-brutal-cream'
                     }`}
                   >
                     {category}
@@ -118,18 +118,45 @@ export default function ProjectsPage() {
                     <Card href={`/projects/${project.id}`} className="h-full flex flex-col overflow-hidden">
                       {viewMode === 'grid' ? (
                         <>
-                          <div className="aspect-[4/3] bg-brutal-ink overflow-hidden relative">
-                            <Image
-                              src={project.images[0]}
-                              alt={project.title}
-                              fill
-                              className="object-contain transition-transform duration-500 group-hover:scale-105"
-                            />
-                          <div className="absolute inset-0 bg-accent-cyan/0 group-hover:bg-accent-cyan/10 transition-colors duration-300" />
-                        </div>
-                        <div className="p-6 flex flex-col flex-grow border-t-3 border-accent-cyan">
+                          <div className="aspect-[4/3] bg-brutal-paper dark:bg-brutal-ink overflow-hidden relative">
+                            {project.isMetaProject ? (
+                              /* Special meta-project display */
+                              <div className="absolute inset-0 bg-gradient-to-br from-brutal-charcoal to-brutal-black flex flex-col items-center justify-center p-4">
+                                <motion.div
+                                  animate={{ 
+                                    boxShadow: ['0 0 0 0 rgba(0, 245, 255, 0)', '0 0 0 8px rgba(0, 245, 255, 0.3)', '0 0 0 0 rgba(0, 245, 255, 0)']
+                                  }}
+                                  transition={{ duration: 2, repeat: Infinity }}
+                                  className="w-16 h-16 border-3 border-accent-cyan flex items-center justify-center mb-3"
+                                >
+                                  <Monitor className="w-8 h-8 text-accent-cyan" />
+                                </motion.div>
+                                <div className="flex items-center gap-2 text-accent-gold">
+                                  <Sparkles className="w-4 h-4" />
+                                  <span className="font-mono text-xs tracking-wider">LIVE NOW</span>
+                                  <Sparkles className="w-4 h-4" />
+                                </div>
+                                {/* Decorative corners */}
+                                <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-accent-cyan/50" />
+                                <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-accent-cyan/50" />
+                                <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-accent-cyan/50" />
+                                <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-accent-cyan/50" />
+                              </div>
+                            ) : (
+                              <>
+                                <Image
+                                  src={project.images[0]}
+                                  alt={project.title}
+                                  fill
+                                  className="object-contain transition-transform duration-500 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-accent-cyan/0 group-hover:bg-accent-cyan/10 transition-colors duration-300" />
+                              </>
+                            )}
+                          </div>
+                          <div className="p-6 flex flex-col flex-grow border-t-3 border-accent-cyan">
                             <span className="brutal-label mb-2">{project.category}</span>
-                            <h3 className="text-xl text-brutal-cream mb-3 group-hover:text-accent-gold transition-colors">
+                            <h3 className="text-xl text-brutal-black dark:text-brutal-cream mb-3 group-hover:text-accent-gold transition-colors">
                               {project.title}
                             </h3>
                             <p className="text-brutal-stone text-sm mb-4 flex-grow line-clamp-2">
@@ -139,7 +166,7 @@ export default function ProjectsPage() {
                               {project.technologies.slice(0, 3).map((tech) => (
                                 <span
                                   key={tech}
-                                  className="px-2 py-1 text-xs font-mono text-brutal-stone border border-brutal-ink"
+                                  className="px-2 py-1 text-xs font-mono text-brutal-stone border border-brutal-charcoal dark:border-brutal-ink"
                                 >
                                   {tech}
                                 </span>
@@ -149,25 +176,45 @@ export default function ProjectsPage() {
                         </>
                       ) : (
                         <div className="flex flex-col md:flex-row gap-8 p-6">
-                          <div className="w-full md:w-80 aspect-[4/3] bg-brutal-ink overflow-hidden relative flex-shrink-0 border-3 border-brutal-ink group-hover:border-accent-cyan transition-colors">
-                            <Image
-                              src={project.images[0]}
-                              alt={project.title}
-                              fill
-                              className="object-contain transition-transform duration-500 group-hover:scale-105"
-                            />
+                          <div className="w-full md:w-80 aspect-[4/3] overflow-hidden relative flex-shrink-0 border-3 border-brutal-charcoal dark:border-brutal-ink group-hover:border-accent-cyan transition-colors">
+                            {project.isMetaProject ? (
+                              /* Special meta-project display for list view */
+                              <div className="absolute inset-0 bg-gradient-to-br from-brutal-charcoal to-brutal-black flex flex-col items-center justify-center">
+                                <motion.div
+                                  animate={{ 
+                                    boxShadow: ['0 0 0 0 rgba(0, 245, 255, 0)', '0 0 0 8px rgba(0, 245, 255, 0.3)', '0 0 0 0 rgba(0, 245, 255, 0)']
+                                  }}
+                                  transition={{ duration: 2, repeat: Infinity }}
+                                  className="w-16 h-16 border-3 border-accent-cyan flex items-center justify-center mb-3"
+                                >
+                                  <Monitor className="w-8 h-8 text-accent-cyan" />
+                                </motion.div>
+                                <div className="flex items-center gap-2 text-accent-gold">
+                                  <Sparkles className="w-4 h-4" />
+                                  <span className="font-mono text-xs tracking-wider">LIVE NOW</span>
+                                  <Sparkles className="w-4 h-4" />
+                                </div>
+                              </div>
+                            ) : (
+                              <Image
+                                src={project.images[0]}
+                                alt={project.title}
+                                fill
+                                className="object-contain transition-transform duration-500 group-hover:scale-105"
+                              />
+                            )}
                           </div>
                           <div className="flex-1 flex flex-col">
                             <span className="brutal-label mb-2">{project.category}</span>
-                            <h3 className="text-2xl text-brutal-cream mb-3 group-hover:text-accent-gold transition-colors">
+                            <h3 className="text-2xl text-brutal-black dark:text-brutal-cream mb-3 group-hover:text-accent-gold transition-colors">
                               {project.title}
                             </h3>
-                            <p className="text-brutal-paper mb-4 flex-grow">{project.description}</p>
+                            <p className="text-brutal-charcoal dark:text-brutal-paper mb-4 flex-grow">{project.description}</p>
                             <div className="flex flex-wrap gap-2">
                               {project.technologies.map((tech) => (
                                 <span
                                   key={tech}
-                                  className="px-3 py-1 text-xs font-mono text-brutal-stone border border-brutal-ink"
+                                  className="px-3 py-1 text-xs font-mono text-brutal-stone border border-brutal-charcoal dark:border-brutal-ink"
                                 >
                                   {tech}
                                 </span>
@@ -184,9 +231,9 @@ export default function ProjectsPage() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="bg-brutal-charcoal border-3 border-brutal-ink py-20 px-8 text-center"
+                className="bg-brutal-paper dark:bg-brutal-charcoal border-3 border-brutal-charcoal dark:border-brutal-ink py-20 px-8 text-center"
               >
-                <h3 className="text-2xl text-brutal-cream mb-3">No Projects Found</h3>
+                <h3 className="text-2xl text-brutal-black dark:text-brutal-cream mb-3">No Projects Found</h3>
                 <p className="text-brutal-stone">
                   Try adjusting your search or filter criteria.
                 </p>

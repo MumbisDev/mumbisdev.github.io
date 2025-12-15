@@ -23,8 +23,8 @@ export const Textarea: React.FC<TextareaProps> = ({
       <textarea
         className={`
           w-full px-4 py-4
-          bg-brutal-ink border-3 border-brutal-ink
-          text-brutal-cream font-body
+          bg-white dark:bg-brutal-ink border-3 border-brutal-charcoal dark:border-brutal-ink
+          text-brutal-black dark:text-brutal-cream font-body
           placeholder:text-brutal-stone
           focus:outline-none focus:border-accent-cyan
           transition-colors duration-200

@@ -18,7 +18,7 @@ export const Card: React.FC<CardProps> = ({
   onClick,
 }) => {
   const cardClasses = `
-    bg-brutal-charcoal border-3 border-brutal-ink
+    bg-white dark:bg-brutal-charcoal border-3 border-brutal-charcoal dark:border-brutal-ink
     transition-all duration-200 ease-[cubic-bezier(0.2,0,0,1)]
     hover:border-accent-cyan
     hover:shadow-brutal-cyan hover:-translate-x-1 hover:-translate-y-1

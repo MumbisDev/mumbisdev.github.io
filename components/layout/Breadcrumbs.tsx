@@ -28,7 +28,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
                 </Link>
               ) : (
                 <span
-                  className={isLast ? 'text-brutal-cream' : 'text-brutal-stone'}
+                  className={isLast ? 'text-brutal-black dark:text-brutal-cream' : 'text-brutal-stone'}
                 >
                   {item.label}
                 </span>

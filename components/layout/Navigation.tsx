@@ -19,14 +19,14 @@ export const Navigation: React.FC = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 bg-brutal-black/95 backdrop-blur-sm border-b-3 border-brutal-charcoal z-50 h-[80px]">
+      <nav className="fixed top-0 left-0 right-0 bg-brutal-cream/95 dark:bg-brutal-black/95 backdrop-blur-sm border-b-3 border-brutal-charcoal dark:border-brutal-charcoal z-50 h-[80px]">
         <div className="container-brutal h-full flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="group relative">
-            <span className="font-display text-3xl text-brutal-cream tracking-tight">
+            <span className="font-display text-3xl text-brutal-black dark:text-brutal-cream tracking-tight">
               Z.O.C
             </span>
-            <span className="absolute -bottom-1 left-0 w-0 h-1 bg-accent-vermillion transition-all duration-300 group-hover:w-full" />
+            <span className="absolute -bottom-1 left-0 w-0 h-1 bg-accent-cyan transition-all duration-300 group-hover:w-full" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -40,7 +40,7 @@ export const Navigation: React.FC = () => {
                   className={`relative px-6 py-3 font-display text-sm tracking-wider transition-all duration-200 ${
                     isActive
                       ? 'text-accent-cyan'
-                      : 'text-brutal-cream hover:text-accent-gold'
+                      : 'text-brutal-black dark:text-brutal-cream hover:text-accent-gold'
                   }`}
                 >
                   <span className="relative z-10">{item.label}</span>
@@ -60,13 +60,13 @@ export const Navigation: React.FC = () => {
           <div className="hidden md:flex items-center gap-3">
             <div className="w-3 h-3 bg-accent-cyan" />
             <div className="w-3 h-3 border-2 border-accent-gold" />
-            <div className="w-3 h-3 bg-brutal-cream" />
+            <div className="w-3 h-3 bg-brutal-black dark:bg-brutal-cream" />
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-brutal-cream hover:text-accent-cyan transition-colors p-2"
+            className="md:hidden text-brutal-black dark:text-brutal-cream hover:text-accent-cyan transition-colors p-2"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -90,7 +90,7 @@ export const Navigation: React.FC = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.3, ease: [0.2, 0, 0, 1] }}
-              className="fixed top-[80px] right-0 bottom-0 w-80 bg-brutal-charcoal border-l-3 border-accent-cyan z-50 md:hidden overflow-y-auto"
+              className="fixed top-[80px] right-0 bottom-0 w-80 bg-brutal-paper dark:bg-brutal-charcoal border-l-3 border-accent-cyan z-50 md:hidden overflow-y-auto"
             >
               <div className="flex flex-col p-6">
                 {navItems.map((item, index) => {
@@ -105,10 +105,10 @@ export const Navigation: React.FC = () => {
                       <Link
                         href={item.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`block py-4 border-b border-brutal-ink ${
+                        className={`block py-4 border-b border-brutal-stone/30 dark:border-brutal-ink ${
                           isActive
                             ? 'text-accent-cyan'
-                            : 'text-brutal-cream hover:text-accent-gold'
+                            : 'text-brutal-black dark:text-brutal-cream hover:text-accent-gold'
                         }`}
                       >
                         <span className="font-display text-2xl tracking-wider">{item.label}</span>
@@ -121,7 +121,7 @@ export const Navigation: React.FC = () => {
                 <div className="mt-12 flex gap-4">
                   <div className="w-12 h-12 border-3 border-accent-cyan" />
                   <div className="w-12 h-12 bg-accent-gold" />
-                  <div className="w-12 h-12 border-3 border-brutal-cream rounded-full" />
+                  <div className="w-12 h-12 border-3 border-brutal-black dark:border-brutal-cream rounded-full" />
                 </div>
               </div>
             </motion.div>

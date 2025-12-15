@@ -12,6 +12,7 @@ export interface Project {
   challenges?: string;
   solutions?: string;
   year: number;
+  isMetaProject?: boolean; // For self-referential projects (like this portfolio)
 }
 
 export interface WorkExperience {

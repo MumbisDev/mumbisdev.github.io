@@ -6,18 +6,24 @@
 
 @layer base {
   * {
-    @apply border-brutal-charcoal;
+    @apply border-brutal-charcoal dark:border-brutal-charcoal;
   }
 
   html {
     scroll-behavior: smooth;
   }
 
+  /* Light Theme (default) */
   body {
-    @apply bg-brutal-black text-brutal-cream font-body;
+    @apply bg-brutal-cream text-brutal-black font-body;
     font-size: 16px;
     line-height: 1.7;
     letter-spacing: 0.02em;
+  }
+
+  /* Dark Theme */
+  .dark body {
+    @apply bg-brutal-black text-brutal-cream;
   }
 
   /* Brutalist Typography */
@@ -46,22 +52,31 @@
     @apply bg-accent-cyan text-brutal-black;
   }
 
-  /* Custom Scrollbar - Brutalist Style */
+  /* Custom Scrollbar - Light Theme */
   ::-webkit-scrollbar {
     width: 12px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-brutal-charcoal;
+    @apply bg-brutal-paper;
   }
 
   ::-webkit-scrollbar-thumb {
     @apply bg-accent-cyan;
-    border: 3px solid #1A1A1A;
+    border: 3px solid #E8E2D4;
   }
 
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-accent-gold;
+  }
+
+  /* Custom Scrollbar - Dark Theme */
+  .dark ::-webkit-scrollbar-track {
+    @apply bg-brutal-charcoal;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    border: 3px solid #1A1A1A;
   }
 }
 
@@ -118,15 +133,24 @@
     text-orientation: mixed;
   }
 
-  /* Brutalist Card */
+  /* Brutalist Card - Light */
   .brutal-card {
-    @apply bg-brutal-charcoal border-3 border-brutal-cream;
+    @apply bg-white border-3 border-brutal-charcoal;
     transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
   }
 
   .brutal-card:hover {
-    @apply shadow-brutal-cream;
+    @apply shadow-brutal;
     transform: translate(-4px, -4px);
+  }
+
+  /* Brutalist Card - Dark */
+  .dark .brutal-card {
+    @apply bg-brutal-charcoal border-brutal-cream;
+  }
+
+  .dark .brutal-card:hover {
+    @apply shadow-brutal-cream;
   }
 
   /* Brutalist Button Base */
@@ -140,24 +164,40 @@
   }
 
   .brutal-btn-primary:hover {
-    @apply bg-brutal-cream text-brutal-black border-brutal-cream;
+    @apply bg-brutal-black text-brutal-cream border-brutal-black;
     box-shadow: 4px 4px 0 0 #00E5CC;
     transform: translate(-4px, -4px);
+  }
+
+  .dark .brutal-btn-primary:hover {
+    @apply bg-brutal-cream text-brutal-black border-brutal-cream;
   }
 
   .brutal-btn-secondary {
-    @apply bg-transparent text-brutal-cream border-brutal-cream;
+    @apply bg-transparent text-brutal-black border-brutal-black;
+  }
+
+  .dark .brutal-btn-secondary {
+    @apply text-brutal-cream border-brutal-cream;
   }
 
   .brutal-btn-secondary:hover {
-    @apply bg-brutal-cream text-brutal-black;
+    @apply bg-brutal-black text-brutal-cream;
     box-shadow: 4px 4px 0 0 #00E5CC;
     transform: translate(-4px, -4px);
+  }
+
+  .dark .brutal-btn-secondary:hover {
+    @apply bg-brutal-cream text-brutal-black;
   }
 
   /* Asymmetric Section Divider */
   .section-divider {
-    @apply relative w-full h-px bg-brutal-ink;
+    @apply relative w-full h-px bg-brutal-stone;
+  }
+
+  .dark .section-divider {
+    @apply bg-brutal-ink;
   }
 
   .section-divider::after {
@@ -196,6 +236,43 @@
   .stagger-3 { animation-delay: 0.3s; }
   .stagger-4 { animation-delay: 0.4s; }
   .stagger-5 { animation-delay: 0.5s; }
+
+  /* ===== THEME-AWARE UTILITY CLASSES ===== */
+  
+  /* Background colors that switch with theme */
+  .bg-theme-primary {
+    @apply bg-brutal-cream dark:bg-brutal-black;
+  }
+
+  .bg-theme-secondary {
+    @apply bg-brutal-paper dark:bg-brutal-charcoal;
+  }
+
+  .bg-theme-tertiary {
+    @apply bg-white dark:bg-brutal-ink;
+  }
+
+  /* Text colors that switch with theme */
+  .text-theme-primary {
+    @apply text-brutal-black dark:text-brutal-cream;
+  }
+
+  .text-theme-secondary {
+    @apply text-brutal-charcoal dark:text-brutal-paper;
+  }
+
+  .text-theme-muted {
+    @apply text-brutal-stone dark:text-brutal-stone;
+  }
+
+  /* Border colors that switch with theme */
+  .border-theme-primary {
+    @apply border-brutal-black dark:border-brutal-cream;
+  }
+
+  .border-theme-secondary {
+    @apply border-brutal-charcoal dark:border-brutal-ink;
+  }
 }
 
 @layer utilities {
@@ -225,11 +302,11 @@
 
   /* Focus States */
   .focus-brutal:focus {
-    @apply outline-none ring-2 ring-accent-cyan ring-offset-2 ring-offset-brutal-black;
+    @apply outline-none ring-2 ring-accent-cyan ring-offset-2 ring-offset-brutal-cream dark:ring-offset-brutal-black;
   }
 
   /* Image container with brutalist border */
   .img-brutal {
-    @apply border-3 border-brutal-cream;
+    @apply border-3 border-brutal-black dark:border-brutal-cream;
   }
 }

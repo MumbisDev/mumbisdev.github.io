@@ -134,7 +134,7 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
           }}
           className="relative max-w-7xl max-h-[85vh] w-full h-full flex items-center justify-center p-4 cursor-pointer"
         >
-          <div className="relative w-full h-full border-4 border-brutal-ink">
+          <div className="relative w-full h-full">
             <Image
               src={images[currentIndex]}
               alt={`Image ${currentIndex + 1}`}

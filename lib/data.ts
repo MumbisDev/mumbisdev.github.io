@@ -26,7 +26,7 @@ export const projects: Project[] = [
     id: '1',
     title: 'Anchor',
     description: 'Presentation of concept habit tracking web application',
-    longDescription: 'Habit tracking web application that allows users to track their habits and goals. It is a simple and easy to use application that allows users to track their habits and goals. It is a simple and easy to use application that allows users to track their habits and goals.',
+    longDescription: 'Habit tracking web application that allows users to track their habits and goals. This was really my first real web app I ever made. It was a lot of fun to make and I learned a lot from it. Could use some polish.',
     category: 'Web Application',
     technologies: ['React', 'JavaScript', 'Flask', 'PostgreSQL'],
     images: [
@@ -46,7 +46,7 @@ export const projects: Project[] = [
     id: '2',
     title: 'LeadSender',
     description: 'An application that allows you to automatically send tens, hundreds, or even thousands of emails by parsing spreadsheet data and inserting data into a template.',
-    longDescription: 'A robust but simple application allowing complete automation of lead outreach, at the moment it is primarily used with propwire exports for real estate leads. However, template functionality is planned for other spreadsheet exports.',
+    longDescription: 'A robust but simple application allowing complete automation of lead outreach, at the moment it is primarily used with propwire exports for real estate leads. This was for a client of mine, not my typical style. But works for them. This is a demo version',
     category: 'Web Application',
     technologies: ['React', 'Next.js', 'Tailwind CSS 4', 'Shadcn UI', 'Express', 'Medium Editor', 'Supabase', 'SendGrid', 'Vercel'],
     images: [
@@ -64,19 +64,17 @@ export const projects: Project[] = [
   {
     id: '3',
     title: 'Portfolio Website',
-    description: 'Personal portfolio website with modern design',
-    longDescription: 'A minimalist portfolio website showcasing my work and skills. Built with Next.js and Tailwind CSS, featuring smooth animations, dark mode support, and optimized performance.',
+    description: 'You\'re looking at it right now — a self-referential meta-experience',
+    longDescription: 'This is the very website you\'re currently browsing. A brutalist-inspired portfolio built with Next.js and TypeScript, featuring bold typography, smooth Framer Motion animations, and dark mode support. Instead of showing you static screenshots, I thought I\'d let you experience it directly.',
     category: 'Website',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'React'],
-    images: [
-      '/portfolio.png',
-      '/portfolio_1.png',
-      '/portfolio_3.png',
-      '/portfolio_4.png',
-    ],
+    images: [],
     featured: true,
     githubUrl: 'https://github.com/MumbisDev/MumbisDev.github.io',
+    challenges: 'Creating a unique portfolio that stands out while remaining functional. Implementing smooth animations without sacrificing performance. Building a self-referential experience that feels clever without being confusing.',
+    solutions: 'Using Tailwind CSS with a custom brutalist design system for consistent styling. Framer Motion for performant, declarative animations. A meta-approach that acknowledges the recursive nature of showcasing the portfolio within itself.',
     year: 2025,
+    isMetaProject: true,
   },
 ];
 

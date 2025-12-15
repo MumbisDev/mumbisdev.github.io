@@ -14,7 +14,7 @@ export const Header: React.FC = () => {
       <div className="fixed top-[22px] right-20 md:right-32 z-[60]">
         <button
           onClick={toggleTheme}
-          className="p-3 border-2 border-brutal-cream/30 text-brutal-cream hover:border-accent-cyan hover:text-accent-cyan transition-all duration-200 bg-brutal-black/80 backdrop-blur-sm"
+          className="p-3 border-2 border-brutal-black/30 dark:border-brutal-cream/30 text-brutal-black dark:text-brutal-cream hover:border-accent-cyan hover:text-accent-cyan transition-all duration-200 bg-brutal-cream/80 dark:bg-brutal-black/80 backdrop-blur-sm"
           aria-label="Toggle theme"
           disabled={!mounted}
         >

@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { Button } from '@/components/ui/Button';
 import { ImageLightbox } from '@/components/modals/ImageLightbox';
+import { PortfolioShowcase } from '@/components/projects/PortfolioShowcase';
 import { useProjects } from '@/hooks/useProjects';
 
 export function ProjectDetailClient() {
@@ -37,7 +38,7 @@ export function ProjectDetailClient() {
 
   return (
     <>
-      <div className="bg-brutal-black min-h-screen py-4xl">
+      <div className="bg-brutal-cream dark:bg-brutal-black min-h-screen py-4xl">
         <div className="container-brutal">
           <Breadcrumbs
             items={[
@@ -64,50 +65,58 @@ export function ProjectDetailClient() {
             {/* Header */}
             <div className="mb-12">
               <span className="brutal-label mb-4 block">{project.category}</span>
-              <h1 className="text-brutal-cream mb-4">
+              <h1 className="text-brutal-black dark:text-brutal-cream mb-4">
                 {project.title}<span className="text-accent-cyan">.</span>
               </h1>
-              <p className="text-brutal-paper text-xl max-w-3xl">{project.description}</p>
+              <p className="text-brutal-charcoal dark:text-brutal-paper text-xl max-w-3xl">{project.description}</p>
             </div>
 
-            {/* Main Image */}
-            <div className="mb-8">
-              <div 
-                className="aspect-video bg-brutal-charcoal border-4 border-brutal-ink overflow-hidden relative cursor-pointer group"
-                onClick={() => handleImageClick(0)}
-              >
-                <Image
-                  src={project.images[0]}
-                  alt={project.title}
-                  fill
-                  className="object-contain transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-accent-cyan/0 group-hover:bg-accent-cyan/10 transition-colors duration-300" />
+            {/* Main Image or Special Showcase */}
+            {project.isMetaProject ? (
+              <div className="mb-12">
+                <PortfolioShowcase technologies={project.technologies} />
               </div>
-            </div>
-
-            {/* Thumbnails */}
-            {project.images.length > 1 && (
-              <div className="flex gap-3 mb-12 overflow-x-auto pb-2">
-                {project.images.map((image, index) => (
-                  <div
-                    key={index}
-                    onClick={() => handleImageClick(index)}
-                    className={`w-24 h-24 border-3 cursor-pointer transition-all duration-200 relative overflow-hidden flex-shrink-0
-                      ${index === lightboxIndex 
-                        ? 'border-accent-cyan' 
-                        : 'border-brutal-ink hover:border-brutal-cream'
-                      }`}
+            ) : (
+              <>
+                <div className="mb-8">
+                  <div 
+                    className="aspect-video bg-brutal-paper dark:bg-brutal-charcoal border-4 border-brutal-charcoal dark:border-brutal-ink overflow-hidden relative cursor-pointer group"
+                    onClick={() => handleImageClick(0)}
                   >
                     <Image
-                      src={image}
-                      alt={`${project.title} ${index + 1}`}
+                      src={project.images[0]}
+                      alt={project.title}
                       fill
-                      className="object-contain"
+                      className="object-contain transition-transform duration-500 group-hover:scale-105"
                     />
+                    <div className="absolute inset-0 bg-accent-cyan/0 group-hover:bg-accent-cyan/10 transition-colors duration-300" />
                   </div>
-                ))}
-              </div>
+                </div>
+
+                {/* Thumbnails */}
+                {project.images.length > 1 && (
+                  <div className="flex gap-3 mb-12 overflow-x-auto pb-2">
+                    {project.images.map((image, index) => (
+                      <div
+                        key={index}
+                        onClick={() => handleImageClick(index)}
+                        className={`w-24 h-24 border-3 cursor-pointer transition-all duration-200 relative overflow-hidden flex-shrink-0
+                          ${index === lightboxIndex 
+                            ? 'border-accent-cyan' 
+                            : 'border-brutal-charcoal dark:border-brutal-ink hover:border-brutal-black dark:hover:border-brutal-cream'
+                          }`}
+                      >
+                        <Image
+                          src={image}
+                          alt={`${project.title} ${index + 1}`}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </>
             )}
 
             {/* Project Details Grid */}
@@ -118,9 +127,9 @@ export function ProjectDetailClient() {
                 <div>
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-8 h-1 bg-accent-cyan" />
-                    <h2 className="text-2xl text-brutal-cream">Description</h2>
+                    <h2 className="text-2xl text-brutal-black dark:text-brutal-cream">Description</h2>
                   </div>
-                  <p className="text-brutal-paper text-lg leading-relaxed">{project.longDescription}</p>
+                  <p className="text-brutal-charcoal dark:text-brutal-paper text-lg leading-relaxed">{project.longDescription}</p>
                 </div>
 
                 {/* Challenges */}
@@ -128,9 +137,9 @@ export function ProjectDetailClient() {
                   <div>
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-8 h-1 bg-accent-gold" />
-                      <h2 className="text-2xl text-brutal-cream">Challenges</h2>
+                      <h2 className="text-2xl text-brutal-black dark:text-brutal-cream">Challenges</h2>
                     </div>
-                    <p className="text-brutal-paper text-lg leading-relaxed">{project.challenges}</p>
+                    <p className="text-brutal-charcoal dark:text-brutal-paper text-lg leading-relaxed">{project.challenges}</p>
                   </div>
                 )}
 
@@ -139,29 +148,29 @@ export function ProjectDetailClient() {
                   <div>
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-8 h-1 bg-accent-cyan" />
-                      <h2 className="text-2xl text-brutal-cream">Solutions</h2>
+                      <h2 className="text-2xl text-brutal-black dark:text-brutal-cream">Solutions</h2>
                     </div>
-                    <p className="text-brutal-paper text-lg leading-relaxed">{project.solutions}</p>
+                    <p className="text-brutal-charcoal dark:text-brutal-paper text-lg leading-relaxed">{project.solutions}</p>
                   </div>
                 )}
               </div>
 
               {/* Sidebar */}
               <div>
-                <div className="bg-brutal-charcoal border-3 border-brutal-ink p-8 sticky top-24">
-                  <h2 className="text-xl text-brutal-cream mb-8">Project Details</h2>
+                <div className="bg-brutal-paper dark:bg-brutal-charcoal border-3 border-brutal-charcoal dark:border-brutal-ink p-8 sticky top-24">
+                  <h2 className="text-xl text-brutal-black dark:text-brutal-cream mb-8">Project Details</h2>
                   
                   <div className="space-y-6">
                     {/* Category */}
                     <div>
                       <span className="brutal-label block mb-2">Category</span>
-                      <p className="text-brutal-cream">{project.category}</p>
+                      <p className="text-brutal-black dark:text-brutal-cream">{project.category}</p>
                     </div>
 
                     {/* Year */}
                     <div>
                       <span className="brutal-label block mb-2">Year</span>
-                      <p className="text-brutal-cream font-mono">{project.year}</p>
+                      <p className="text-brutal-black dark:text-brutal-cream font-mono">{project.year}</p>
                     </div>
 
                     {/* Technologies */}
@@ -171,7 +180,7 @@ export function ProjectDetailClient() {
                         {project.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="px-3 py-1 border-2 border-brutal-ink text-brutal-stone text-xs font-mono
+                            className="px-3 py-1 border-2 border-brutal-charcoal dark:border-brutal-ink text-brutal-stone text-xs font-mono
                                        hover:border-accent-cyan hover:text-accent-cyan transition-colors"
                           >
                             {tech}
@@ -181,7 +190,7 @@ export function ProjectDetailClient() {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex flex-col gap-3 pt-6 border-t border-brutal-ink">
+                    <div className="flex flex-col gap-3 pt-6 border-t border-brutal-stone/30 dark:border-brutal-ink">
                       {project.liveUrl && (
                         <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                           <Button variant="primary" className="w-full flex items-center justify-center gap-2">

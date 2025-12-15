@@ -64,15 +64,15 @@ export const Modal: React.FC<ModalProps> = ({
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="bg-brutal-charcoal border-4 border-accent-cyan max-w-lg w-full max-h-[90vh] overflow-y-auto relative">
+            <div className="bg-brutal-cream dark:bg-brutal-charcoal border-4 border-accent-cyan max-w-lg w-full max-h-[90vh] overflow-y-auto relative">
               {title && (
-                <div className="px-8 py-6 border-b-3 border-brutal-ink flex items-center justify-between">
-                  <h2 className="font-display text-2xl text-brutal-cream tracking-wider">
+                <div className="px-8 py-6 border-b-3 border-brutal-stone/30 dark:border-brutal-ink flex items-center justify-between">
+                  <h2 className="font-display text-2xl text-brutal-black dark:text-brutal-cream tracking-wider">
                     {title}
                   </h2>
                   <button
                     onClick={onClose}
-                    className="w-10 h-10 border-2 border-brutal-ink flex items-center justify-center text-brutal-cream 
+                    className="w-10 h-10 border-2 border-brutal-charcoal dark:border-brutal-ink flex items-center justify-center text-brutal-black dark:text-brutal-cream 
                                hover:border-accent-cyan hover:text-accent-cyan transition-colors"
                     aria-label="Close modal"
                   >
@@ -83,8 +83,8 @@ export const Modal: React.FC<ModalProps> = ({
               {!title && (
                 <button
                   onClick={onClose}
-                  className="absolute top-4 right-4 w-10 h-10 border-2 border-brutal-ink flex items-center justify-center 
-                             text-brutal-cream hover:border-accent-cyan hover:text-accent-cyan transition-colors z-10"
+                  className="absolute top-4 right-4 w-10 h-10 border-2 border-brutal-charcoal dark:border-brutal-ink flex items-center justify-center 
+                             text-brutal-black dark:text-brutal-cream hover:border-accent-cyan hover:text-accent-cyan transition-colors z-10"
                   aria-label="Close modal"
                 >
                   <X size={20} />

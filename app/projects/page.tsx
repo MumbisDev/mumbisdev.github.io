@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Grid, List, Monitor, Sparkles } from 'lucide-react';
+import { Grid, List, Monitor } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
 import { useProjects } from '@/hooks/useProjects';
@@ -132,9 +132,7 @@ export default function ProjectsPage() {
                                   <Monitor className="w-8 h-8 text-accent-cyan" />
                                 </motion.div>
                                 <div className="flex items-center gap-2 text-accent-gold">
-                                  <Sparkles className="w-4 h-4" />
                                   <span className="font-mono text-xs tracking-wider">LIVE NOW</span>
-                                  <Sparkles className="w-4 h-4" />
                                 </div>
                                 {/* Decorative corners */}
                                 <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-accent-cyan/50" />
@@ -190,9 +188,7 @@ export default function ProjectsPage() {
                                   <Monitor className="w-8 h-8 text-accent-cyan" />
                                 </motion.div>
                                 <div className="flex items-center gap-2 text-accent-gold">
-                                  <Sparkles className="w-4 h-4" />
                                   <span className="font-mono text-xs tracking-wider">LIVE NOW</span>
-                                  <Sparkles className="w-4 h-4" />
                                 </div>
                               </div>
                             ) : (

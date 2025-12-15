@@ -2,18 +2,19 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Monitor, Code2, Sparkles, Layers, MousePointer2 } from 'lucide-react';
+import { Monitor } from 'lucide-react';
 
 interface PortfolioShowcaseProps {
   technologies: string[];
 }
 
 export function PortfolioShowcase({ technologies }: PortfolioShowcaseProps) {
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const [currentTime, setCurrentTime] = useState<Date | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
+    setCurrentTime(new Date());
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
@@ -80,13 +81,8 @@ export function PortfolioShowcase({ technologies }: PortfolioShowcaseProps) {
                 transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
                 className="mb-6"
               >
-                <div className="w-20 h-20 border-4 border-accent-cyan flex items-center justify-center relative">
+                <div className="w-20 h-20 border-4 border-accent-cyan flex items-center justify-center">
                   <Monitor className="w-10 h-10 text-accent-cyan" />
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                    className="absolute -inset-2 border-2 border-dashed border-accent-gold/50 rounded-full"
-                  />
                 </div>
               </motion.div>
 
@@ -115,7 +111,7 @@ export function PortfolioShowcase({ technologies }: PortfolioShowcaseProps) {
                 transition={{ delay: 0.9 }}
                 className="mt-6 font-mono text-xs text-accent-cyan"
               >
-                LIVE: {currentTime.toLocaleTimeString()}
+                {currentTime ? `LIVE: ${currentTime.toLocaleTimeString()}` : 'LIVE: --:--:--'}
               </motion.div>
             </div>
 
@@ -128,54 +124,15 @@ export function PortfolioShowcase({ technologies }: PortfolioShowcaseProps) {
         </div>
       </motion.div>
 
-      {/* Interactive feature cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {[
-          {
-            icon: Code2,
-            title: 'Source Code',
-            description: 'Built with modern web technologies',
-            accent: 'accent-cyan',
-          },
-          {
-            icon: Layers,
-            title: 'Meta Design',
-            description: 'Self-referential showcase',
-            accent: 'accent-gold',
-          },
-          {
-            icon: MousePointer2,
-            title: 'Interactive',
-            description: 'Explore the live experience',
-            accent: 'accent-coral',
-          },
-        ].map((feature, index) => (
-          <motion.div
-            key={feature.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 + index * 0.1 }}
-            className="group border-3 border-brutal-charcoal dark:border-brutal-ink bg-brutal-paper dark:bg-brutal-charcoal p-6 hover:border-accent-cyan transition-colors"
-          >
-            <feature.icon className={`w-8 h-8 text-${feature.accent} mb-3`} />
-            <h4 className="font-display text-brutal-black dark:text-brutal-cream text-lg mb-1">
-              {feature.title}
-            </h4>
-            <p className="text-brutal-stone text-sm">{feature.description}</p>
-          </motion.div>
-        ))}
-      </div>
-
       {/* Tech stack visualization */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}
-        className="border-3 border-brutal-charcoal dark:border-brutal-ink bg-brutal-charcoal dark:bg-brutal-ink p-6"
+        className="border-3 border-brutal-charcoal dark:border-brutal-ink bg-brutal-paper dark:bg-brutal-charcoal p-6"
       >
         <div className="flex items-center gap-3 mb-4">
-          <Sparkles className="w-5 h-5 text-accent-gold" />
-          <span className="font-mono text-sm text-brutal-cream uppercase tracking-widest">
+          <span className="font-mono text-sm text-brutal-charcoal dark:text-brutal-cream uppercase tracking-widest">
             Built With
           </span>
         </div>
@@ -186,7 +143,7 @@ export function PortfolioShowcase({ technologies }: PortfolioShowcaseProps) {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1 + index * 0.1 }}
-              className="px-4 py-2 border border-accent-cyan/50 text-accent-cyan font-mono text-sm
+              className="px-4 py-2 border-2 border-brutal-charcoal dark:border-accent-cyan/50 text-brutal-charcoal dark:text-accent-cyan font-mono text-sm
                          hover:bg-accent-cyan hover:text-brutal-black transition-colors cursor-default"
             >
               {tech}

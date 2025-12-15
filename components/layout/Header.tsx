@@ -11,17 +11,16 @@ export const Header: React.FC = () => {
   return (
     <header>
       <Navigation />
-      <div className="fixed top-[30px] right-4 md:right-6 z-[60] -translate-y-1/2">
+      <div className="fixed top-[22px] right-20 md:right-32 z-[60]">
         <button
           onClick={toggleTheme}
-          className="p-2 text-black hover:text-neutral-600 transition-colors bg-white shadow-sm"
+          className="p-3 border-2 border-brutal-cream/30 text-brutal-cream hover:border-accent-cyan hover:text-accent-cyan transition-all duration-200 bg-brutal-black/80 backdrop-blur-sm"
           aria-label="Toggle theme"
           disabled={!mounted}
         >
-          {mounted && (theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />)}
+          {mounted && (theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />)}
         </button>
       </div>
     </header>
   );
 };
-

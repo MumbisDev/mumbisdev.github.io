@@ -54,24 +54,26 @@ export const Modal: React.FC<ModalProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black bg-opacity-50 z-50"
+            className="fixed inset-0 bg-brutal-black/90 backdrop-blur-sm z-50"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ duration: 0.2, ease: [0.2, 0, 0, 1] }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="bg-white max-w-lg w-full max-h-[90vh] overflow-y-auto relative">
+            <div className="bg-brutal-charcoal border-4 border-accent-cyan max-w-lg w-full max-h-[90vh] overflow-y-auto relative">
               {title && (
-                <div className="px-6 py-4 border-b border-neutral-200 flex items-center justify-between">
-                  <h2 className="text-2xl font-light uppercase tracking-wider text-black">
+                <div className="px-8 py-6 border-b-3 border-brutal-ink flex items-center justify-between">
+                  <h2 className="font-display text-2xl text-brutal-cream tracking-wider">
                     {title}
                   </h2>
                   <button
                     onClick={onClose}
-                    className="text-black hover:text-neutral-600 transition-colors"
+                    className="w-10 h-10 border-2 border-brutal-ink flex items-center justify-center text-brutal-cream 
+                               hover:border-accent-cyan hover:text-accent-cyan transition-colors"
                     aria-label="Close modal"
                   >
                     <X size={20} />
@@ -81,13 +83,14 @@ export const Modal: React.FC<ModalProps> = ({
               {!title && (
                 <button
                   onClick={onClose}
-                  className="absolute top-4 right-4 text-black hover:text-neutral-600 transition-colors z-10"
+                  className="absolute top-4 right-4 w-10 h-10 border-2 border-brutal-ink flex items-center justify-center 
+                             text-brutal-cream hover:border-accent-cyan hover:text-accent-cyan transition-colors z-10"
                   aria-label="Close modal"
                 >
                   <X size={20} />
                 </button>
               )}
-              <div className="p-6">{children}</div>
+              <div className="p-8">{children}</div>
             </div>
           </motion.div>
         </>
@@ -95,4 +98,3 @@ export const Modal: React.FC<ModalProps> = ({
     </AnimatePresence>
   );
 };
-

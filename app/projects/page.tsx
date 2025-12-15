@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Grid, List } from 'lucide-react';
@@ -21,166 +21,180 @@ export default function ProjectsPage() {
   } = useProjects();
 
   return (
-    <div className="py-3xl">
-      <div className="max-w-container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h1 className="mb-12">Projects</h1>
+    <div className="bg-brutal-black min-h-screen">
+      <section className="py-4xl relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute top-0 right-0 w-96 h-96 border-4 border-accent-cyan/10 rotate-45" />
 
-          {/* Filters and Search */}
-          <div className="mb-8 space-y-4">
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-1">
-                <Input
-                  type="text"
-                  placeholder="Search projects..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full"
-                />
+        <div className="container-brutal">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Header */}
+            <div className="mb-16">
+              <span className="brutal-label mb-4 block">Selected Work</span>
+              <h1 className="text-brutal-cream mb-6">
+                Projects<span className="text-accent-cyan">.</span>
+              </h1>
+            </div>
+
+            {/* Filters and Search */}
+            <div className="mb-12 space-y-6">
+              <div className="flex flex-col md:flex-row gap-4 items-start md:items-center">
+                <div className="flex-1 max-w-md">
+                  <Input
+                    type="text"
+                    placeholder="Search projects..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full"
+                  />
+                </div>
+                
+                {/* View mode toggles */}
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setViewMode('grid')}
+                    className={`p-3 border-3 transition-all duration-200 ${
+                      viewMode === 'grid'
+                        ? 'bg-accent-cyan text-brutal-black border-accent-cyan'
+                        : 'border-brutal-ink text-brutal-stone hover:border-brutal-cream hover:text-brutal-cream'
+                    }`}
+                    aria-label="Grid view"
+                  >
+                    <Grid size={20} />
+                  </button>
+                  <button
+                    onClick={() => setViewMode('list')}
+                    className={`p-3 border-3 transition-all duration-200 ${
+                      viewMode === 'list'
+                        ? 'bg-accent-cyan text-brutal-black border-accent-cyan'
+                        : 'border-brutal-ink text-brutal-stone hover:border-brutal-cream hover:text-brutal-cream'
+                    }`}
+                    aria-label="List view"
+                  >
+                    <List size={20} />
+                  </button>
+                </div>
               </div>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setViewMode('grid')}
-                  className={`p-2 border ${
-                    viewMode === 'grid'
-                      ? 'bg-black text-white border-black'
-                      : 'border-neutral-300 text-black hover:border-black'
-                  } transition-colors`}
-                  aria-label="Grid view"
-                >
-                  <Grid size={20} />
-                </button>
-                <button
-                  onClick={() => setViewMode('list')}
-                  className={`p-2 border ${
-                    viewMode === 'list'
-                      ? 'bg-black text-white border-black'
-                      : 'border-neutral-300 text-black hover:border-black'
-                  } transition-colors`}
-                  aria-label="List view"
-                >
-                  <List size={20} />
-                </button>
+
+              {/* Category Filters */}
+              <div className="flex flex-wrap gap-3">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`px-5 py-2 font-display text-sm tracking-wider border-3 transition-all duration-200 ${
+                      selectedCategory === category
+                        ? 'bg-accent-cyan text-brutal-black border-accent-cyan'
+                        : 'bg-transparent text-brutal-stone border-brutal-ink hover:border-brutal-cream hover:text-brutal-cream'
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
               </div>
             </div>
 
-            {/* Category Filters */}
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 text-xs font-normal uppercase tracking-wider border transition-colors ${
-                    selectedCategory === category
-                      ? 'bg-black text-white border-black'
-                      : 'bg-transparent text-black border-neutral-300 hover:border-black'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Projects Grid/List */}
-          {projects.length > 0 ? (
-            <div
-              className={
-                viewMode === 'grid'
-                  ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'
-                  : 'space-y-6'
-              }
-            >
-              {projects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.05 }}
-                  className="h-full"
-                >
-                  <Card href={`/projects/${project.id}`} className="h-full flex flex-col">
-                    {viewMode === 'grid' ? (
-                      <>
-                        <div className="aspect-square bg-neutral-100 overflow-hidden relative">
-                          <Image
-                            src={project.images[0]}
-                            alt={project.title}
-                            fill
-                            className="object-contain transition-transform duration-300 hover:scale-105"
-                          />
+            {/* Projects Grid/List */}
+            {projects.length > 0 ? (
+              <div
+                className={
+                  viewMode === 'grid'
+                    ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+                    : 'space-y-8'
+                }
+              >
+                {projects.map((project, index) => (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="h-full"
+                  >
+                    <Card href={`/projects/${project.id}`} className="h-full flex flex-col overflow-hidden">
+                      {viewMode === 'grid' ? (
+                        <>
+                          <div className="aspect-[4/3] bg-brutal-ink overflow-hidden relative">
+                            <Image
+                              src={project.images[0]}
+                              alt={project.title}
+                              fill
+                              className="object-contain transition-transform duration-500 group-hover:scale-105"
+                            />
+                          <div className="absolute inset-0 bg-accent-cyan/0 group-hover:bg-accent-cyan/10 transition-colors duration-300" />
                         </div>
-                        <div className="p-6 flex flex-col flex-grow">
-                          <p className="text-caption text-neutral-500 uppercase tracking-wider mb-1">
-                            {project.category}
-                          </p>
-                          <h3 className="text-sm font-normal uppercase tracking-wider mb-2">
-                            {project.title}
-                          </h3>
-                          <p className="text-sm text-neutral-500 mb-4 flex-grow">{project.description}</p>
-                          <div className="flex flex-wrap gap-2">
-                            {project.technologies.slice(0, 3).map((tech) => (
-                              <span
-                                key={tech}
-                                className="text-xs text-neutral-500 uppercase tracking-wider"
-                              >
-                                {tech}
-                              </span>
-                            ))}
+                        <div className="p-6 flex flex-col flex-grow border-t-3 border-accent-cyan">
+                            <span className="brutal-label mb-2">{project.category}</span>
+                            <h3 className="text-xl text-brutal-cream mb-3 group-hover:text-accent-gold transition-colors">
+                              {project.title}
+                            </h3>
+                            <p className="text-brutal-stone text-sm mb-4 flex-grow line-clamp-2">
+                              {project.description}
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {project.technologies.slice(0, 3).map((tech) => (
+                                <span
+                                  key={tech}
+                                  className="px-2 py-1 text-xs font-mono text-brutal-stone border border-brutal-ink"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="flex flex-col md:flex-row gap-8 p-6">
+                          <div className="w-full md:w-80 aspect-[4/3] bg-brutal-ink overflow-hidden relative flex-shrink-0 border-3 border-brutal-ink group-hover:border-accent-cyan transition-colors">
+                            <Image
+                              src={project.images[0]}
+                              alt={project.title}
+                              fill
+                              className="object-contain transition-transform duration-500 group-hover:scale-105"
+                            />
+                          </div>
+                          <div className="flex-1 flex flex-col">
+                            <span className="brutal-label mb-2">{project.category}</span>
+                            <h3 className="text-2xl text-brutal-cream mb-3 group-hover:text-accent-gold transition-colors">
+                              {project.title}
+                            </h3>
+                            <p className="text-brutal-paper mb-4 flex-grow">{project.description}</p>
+                            <div className="flex flex-wrap gap-2">
+                              {project.technologies.map((tech) => (
+                                <span
+                                  key={tech}
+                                  className="px-3 py-1 text-xs font-mono text-brutal-stone border border-brutal-ink"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
                           </div>
                         </div>
-                      </>
-                    ) : (
-                      <div className="flex flex-col md:flex-row gap-6 p-6">
-                        <div className="w-full md:w-64 aspect-square bg-neutral-100 overflow-hidden relative flex-shrink-0">
-                          <Image
-                            src={project.images[0]}
-                            alt={project.title}
-                            fill
-                            className="object-contain transition-transform duration-300 hover:scale-105"
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-caption text-neutral-500 uppercase tracking-wider mb-1">
-                            {project.category}
-                          </p>
-                          <h3 className="text-lg font-normal uppercase tracking-wider mb-2">
-                            {project.title}
-                          </h3>
-                          <p className="text-sm text-neutral-500 mb-4">{project.description}</p>
-                          <div className="flex flex-wrap gap-2">
-                            {project.technologies.map((tech) => (
-                              <span
-                                key={tech}
-                                className="text-xs text-neutral-500 uppercase tracking-wider"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          ) : (
-            <div className="bg-neutral-100 py-16 px-8 text-center">
-              <p className="text-base font-normal uppercase tracking-wider text-black mb-2">
-                No Projects Found
-              </p>
-              <p className="text-sm text-neutral-500">
-                Try adjusting your search or filter criteria.
-              </p>
-            </div>
-          )}
-        </motion.div>
-      </div>
+                      )}
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="bg-brutal-charcoal border-3 border-brutal-ink py-20 px-8 text-center"
+              >
+                <h3 className="text-2xl text-brutal-cream mb-3">No Projects Found</h3>
+                <p className="text-brutal-stone">
+                  Try adjusting your search or filter criteria.
+                </p>
+              </motion.div>
+            )}
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 }

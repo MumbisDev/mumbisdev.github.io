@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import { useParams, notFound } from 'next/navigation';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { Button } from '@/components/ui/Button';
 import { ImageLightbox } from '@/components/modals/ImageLightbox';
@@ -36,8 +37,8 @@ export function ProjectDetailClient() {
 
   return (
     <>
-      <div className="py-3xl">
-        <div className="max-w-container mx-auto px-6">
+      <div className="bg-brutal-black min-h-screen py-4xl">
+        <div className="container-brutal">
           <Breadcrumbs
             items={[
               { label: 'Home', href: '/' },
@@ -46,36 +47,57 @@ export function ProjectDetailClient() {
             ]}
           />
 
+          {/* Back link */}
+          <Link 
+            href="/projects" 
+            className="inline-flex items-center gap-2 text-brutal-stone hover:text-accent-cyan transition-colors mt-6 mb-8"
+          >
+            <ArrowLeft size={16} />
+            <span className="font-mono text-sm">Back to Projects</span>
+          </Link>
+
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mt-8"
           >
-            <h1 className="mb-4">{project.title}</h1>
-            <p className="text-body text-neutral-500 mb-8">{project.description}</p>
+            {/* Header */}
+            <div className="mb-12">
+              <span className="brutal-label mb-4 block">{project.category}</span>
+              <h1 className="text-brutal-cream mb-4">
+                {project.title}<span className="text-accent-cyan">.</span>
+              </h1>
+              <p className="text-brutal-paper text-xl max-w-3xl">{project.description}</p>
+            </div>
 
             {/* Main Image */}
             <div className="mb-8">
-              <div className="aspect-square bg-neutral-100 overflow-hidden relative cursor-pointer">
+              <div 
+                className="aspect-video bg-brutal-charcoal border-4 border-brutal-ink overflow-hidden relative cursor-pointer group"
+                onClick={() => handleImageClick(0)}
+              >
                 <Image
                   src={project.images[0]}
                   alt={project.title}
                   fill
-                  className="object-contain"
-                  onClick={() => handleImageClick(0)}
+                  className="object-contain transition-transform duration-500 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-accent-cyan/0 group-hover:bg-accent-cyan/10 transition-colors duration-300" />
               </div>
             </div>
 
             {/* Thumbnails */}
             {project.images.length > 1 && (
-              <div className="flex gap-2 mb-8">
+              <div className="flex gap-3 mb-12 overflow-x-auto pb-2">
                 {project.images.map((image, index) => (
                   <div
                     key={index}
                     onClick={() => handleImageClick(index)}
-                    className="w-[60px] h-[60px] border border-neutral-200 cursor-pointer hover:border-black transition-colors relative overflow-hidden"
+                    className={`w-24 h-24 border-3 cursor-pointer transition-all duration-200 relative overflow-hidden flex-shrink-0
+                      ${index === lightboxIndex 
+                        ? 'border-accent-cyan' 
+                        : 'border-brutal-ink hover:border-brutal-cream'
+                      }`}
                   >
                     <Image
                       src={image}
@@ -88,74 +110,95 @@ export function ProjectDetailClient() {
               </div>
             )}
 
-            {/* Project Details */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-              <div className="lg:col-span-2">
-                <h2 className="mb-4">Description</h2>
-                <p className="text-body mb-6">{project.longDescription}</p>
+            {/* Project Details Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+              {/* Main Content */}
+              <div className="lg:col-span-2 space-y-12">
+                {/* Description */}
+                <div>
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-8 h-1 bg-accent-cyan" />
+                    <h2 className="text-2xl text-brutal-cream">Description</h2>
+                  </div>
+                  <p className="text-brutal-paper text-lg leading-relaxed">{project.longDescription}</p>
+                </div>
 
+                {/* Challenges */}
                 {project.challenges && (
-                  <>
-                    <h3 className="mb-3">Challenges</h3>
-                    <p className="text-body mb-6">{project.challenges}</p>
-                  </>
+                  <div>
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-8 h-1 bg-accent-gold" />
+                      <h2 className="text-2xl text-brutal-cream">Challenges</h2>
+                    </div>
+                    <p className="text-brutal-paper text-lg leading-relaxed">{project.challenges}</p>
+                  </div>
                 )}
 
+                {/* Solutions */}
                 {project.solutions && (
-                  <>
-                    <h3 className="mb-3">Solutions</h3>
-                    <p className="text-body">{project.solutions}</p>
-                  </>
+                  <div>
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-8 h-1 bg-accent-cyan" />
+                      <h2 className="text-2xl text-brutal-cream">Solutions</h2>
+                    </div>
+                    <p className="text-brutal-paper text-lg leading-relaxed">{project.solutions}</p>
+                  </div>
                 )}
               </div>
 
+              {/* Sidebar */}
               <div>
-                <h2 className="mb-4">Details</h2>
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-xs font-normal uppercase tracking-wider text-neutral-500 mb-2">
-                      Category
-                    </p>
-                    <p className="text-sm">{project.category}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs font-normal uppercase tracking-wider text-neutral-500 mb-2">
-                      Year
-                    </p>
-                    <p className="text-sm">{project.year}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs font-normal uppercase tracking-wider text-neutral-500 mb-2">
-                      Technologies
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 border border-neutral-300 text-xs uppercase tracking-wider"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                <div className="bg-brutal-charcoal border-3 border-brutal-ink p-8 sticky top-24">
+                  <h2 className="text-xl text-brutal-cream mb-8">Project Details</h2>
+                  
+                  <div className="space-y-6">
+                    {/* Category */}
+                    <div>
+                      <span className="brutal-label block mb-2">Category</span>
+                      <p className="text-brutal-cream">{project.category}</p>
                     </div>
-                  </div>
-                  <div className="flex flex-col gap-2 pt-4">
-                    {project.liveUrl && (
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        <Button variant="primary" className="w-full flex items-center justify-center gap-2">
-                          <ExternalLink size={16} />
-                          Live Demo
-                        </Button>
-                      </a>
-                    )}
-                    {project.githubUrl && (
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                        <Button variant="secondary" className="w-full flex items-center justify-center gap-2">
-                          <Github size={16} />
-                          View Code
-                        </Button>
-                      </a>
-                    )}
+
+                    {/* Year */}
+                    <div>
+                      <span className="brutal-label block mb-2">Year</span>
+                      <p className="text-brutal-cream font-mono">{project.year}</p>
+                    </div>
+
+                    {/* Technologies */}
+                    <div>
+                      <span className="brutal-label block mb-3">Technologies</span>
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-3 py-1 border-2 border-brutal-ink text-brutal-stone text-xs font-mono
+                                       hover:border-accent-cyan hover:text-accent-cyan transition-colors"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-col gap-3 pt-6 border-t border-brutal-ink">
+                      {project.liveUrl && (
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <Button variant="primary" className="w-full flex items-center justify-center gap-2">
+                            <ExternalLink size={16} />
+                            Live Demo
+                          </Button>
+                        </a>
+                      )}
+                      {project.githubUrl && (
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                          <Button variant="secondary" className="w-full flex items-center justify-center gap-2">
+                            <Github size={16} />
+                            View Code
+                          </Button>
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -175,4 +218,3 @@ export function ProjectDetailClient() {
     </>
   );
 }
-

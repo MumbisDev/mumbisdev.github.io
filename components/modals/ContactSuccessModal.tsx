@@ -25,13 +25,19 @@ export const ContactSuccessModal: React.FC<ContactSuccessModalProps> = ({
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="text-center">
-        <CheckCircle size={64} className="text-semantic-success mx-auto mb-4" />
-        <h2 className="text-2xl font-light uppercase tracking-wider text-black mb-4">
+        {/* Success icon with decorative elements */}
+        <div className="relative inline-block mb-6">
+          <div className="absolute -top-2 -left-2 w-20 h-20 border-2 border-accent-gold/30" />
+          <CheckCircle size={64} className="text-semantic-success relative z-10" />
+        </div>
+        
+        <h2 className="font-display text-3xl text-brutal-cream mb-4 tracking-wider">
           Message Sent
         </h2>
-        <p className="text-sm text-neutral-500 mb-8">
-          Thank you for reaching out! I'll get back to you as soon as possible.
+        <p className="text-brutal-paper mb-8">
+          Thank you for reaching out! I&apos;ll get back to you as soon as possible.
         </p>
+        
         <div className="flex gap-4 justify-center">
           <Button variant="primary" onClick={handleReturnHome}>
             Return Home
@@ -44,4 +50,3 @@ export const ContactSuccessModal: React.FC<ContactSuccessModalProps> = ({
     </Modal>
   );
 };
-

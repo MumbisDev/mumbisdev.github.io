@@ -69,16 +69,19 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="fixed inset-0 bg-black bg-opacity-95 z-[70] flex items-center justify-center"
+        className="fixed inset-0 bg-brutal-black/98 z-[70] flex items-center justify-center"
       >
+        {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-white hover:text-neutral-300 transition-colors z-[80]"
+          className="absolute top-6 right-6 w-12 h-12 border-3 border-brutal-ink flex items-center justify-center 
+                     text-brutal-cream hover:border-accent-cyan hover:text-accent-cyan transition-colors z-[80]"
           aria-label="Close lightbox"
         >
           <X size={24} />
         </button>
 
+        {/* Navigation buttons */}
         {images.length > 1 && (
           <>
             <button
@@ -86,28 +89,34 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
                 e.stopPropagation();
                 onPrevious();
               }}
-              className="absolute left-4 text-white hover:text-neutral-300 transition-colors z-10"
+              className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 border-3 border-brutal-ink flex items-center justify-center 
+                         text-brutal-cream hover:border-accent-cyan hover:text-accent-cyan 
+                         hover:shadow-brutal-cyan hover:-translate-x-1 transition-all z-10"
               aria-label="Previous image"
             >
-              <ChevronLeft size={32} />
+              <ChevronLeft size={28} />
             </button>
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 onNext();
               }}
-              className="absolute right-4 text-white hover:text-neutral-300 transition-colors z-10"
+              className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 border-3 border-brutal-ink flex items-center justify-center 
+                         text-brutal-cream hover:border-accent-cyan hover:text-accent-cyan 
+                         hover:shadow-brutal-cyan hover:translate-x-1 transition-all z-10"
               aria-label="Next image"
             >
-              <ChevronRight size={32} />
+              <ChevronRight size={28} />
             </button>
           </>
         )}
 
+        {/* Image container */}
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
+          transition={{ duration: 0.2, ease: [0.2, 0, 0, 1] }}
           onClick={(e) => {
             e.stopPropagation();
             if (images.length > 1) {
@@ -123,25 +132,39 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
               }
             }
           }}
-          className="relative max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center p-4 cursor-pointer"
+          className="relative max-w-7xl max-h-[85vh] w-full h-full flex items-center justify-center p-4 cursor-pointer"
         >
-          <Image
-            src={images[currentIndex]}
-            alt={`Image ${currentIndex + 1}`}
-            width={1200}
-            height={800}
-            className="max-w-full max-h-full object-contain pointer-events-none"
-            priority
-          />
+          <div className="relative w-full h-full border-4 border-brutal-ink">
+            <Image
+              src={images[currentIndex]}
+              alt={`Image ${currentIndex + 1}`}
+              width={1200}
+              height={800}
+              className="max-w-full max-h-full object-contain pointer-events-none mx-auto"
+              priority
+            />
+          </div>
         </motion.div>
 
+        {/* Image counter */}
         {images.length > 1 && (
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm">
-            {currentIndex + 1} / {images.length}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-4">
+            <div className="flex gap-2">
+              {images.map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-2 h-2 transition-colors ${
+                    index === currentIndex ? 'bg-accent-cyan' : 'bg-brutal-ink'
+                  }`}
+                />
+              ))}
+            </div>
+            <span className="font-mono text-sm text-brutal-stone">
+              {currentIndex + 1} / {images.length}
+            </span>
           </div>
         )}
       </motion.div>
     </AnimatePresence>
   );
 };
-

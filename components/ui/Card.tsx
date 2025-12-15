@@ -17,13 +17,18 @@ export const Card: React.FC<CardProps> = ({
   className = '',
   onClick,
 }) => {
-  const cardClasses = 'bg-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5';
+  const cardClasses = `
+    bg-brutal-charcoal border-3 border-brutal-ink
+    transition-all duration-200 ease-[cubic-bezier(0.2,0,0,1)]
+    hover:border-accent-cyan
+    hover:shadow-brutal-cyan hover:-translate-x-1 hover:-translate-y-1
+    group
+  `;
   const hasFlex = className.includes('flex');
   const linkClassName = hasFlex ? 'block h-full' : 'block';
 
   const content = (
     <motion.div
-      whileHover={{ y: -2 }}
       className={`${cardClasses} ${className}`}
       onClick={onClick}
     >
@@ -41,4 +46,3 @@ export const Card: React.FC<CardProps> = ({
 
   return content;
 };
-

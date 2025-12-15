@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { ChevronRight } from 'lucide-react';
 
 interface BreadcrumbItem {
   label: string;
@@ -14,7 +13,7 @@ interface BreadcrumbsProps {
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
   return (
     <nav className="py-4" aria-label="Breadcrumb">
-      <ol className="flex items-center gap-2 text-caption uppercase tracking-wider">
+      <ol className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
 
@@ -23,19 +22,19 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
               {item.href && !isLast ? (
                 <Link
                   href={item.href}
-                  className="text-neutral-500 hover:text-black transition-colors"
+                  className="text-brutal-stone hover:text-accent-cyan transition-colors"
                 >
                   {item.label}
                 </Link>
               ) : (
                 <span
-                  className={isLast ? 'text-black font-medium' : 'text-neutral-500'}
+                  className={isLast ? 'text-brutal-cream' : 'text-brutal-stone'}
                 >
                   {item.label}
                 </span>
               )}
               {!isLast && (
-                <ChevronRight size={12} className="text-neutral-300" />
+                <span className="text-accent-cyan">/</span>
               )}
             </li>
           );
@@ -44,4 +43,3 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
     </nav>
   );
 };
-

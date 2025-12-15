@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -14,20 +16,26 @@ export const Input: React.FC<InputProps> = ({
   return (
     <div className="w-full">
       {label && (
-        <label className="block text-xs font-normal uppercase tracking-wider text-black mb-2">
+        <label className="block font-mono text-xs uppercase tracking-widest text-brutal-stone mb-2">
           {label}
         </label>
       )}
       <input
-        className={`w-full bg-white border ${
-          error ? 'border-semantic-error' : 'border-neutral-300'
-        } px-4 py-3 text-sm text-black placeholder-neutral-400 focus:outline-none focus:border-black focus:ring-2 focus:ring-black focus:ring-opacity-10 ${className}`}
+        className={`
+          w-full px-4 py-4
+          bg-brutal-ink border-3 border-brutal-ink
+          text-brutal-cream font-body
+          placeholder:text-brutal-stone
+          focus:outline-none focus:border-accent-cyan
+          transition-colors duration-200
+          ${error ? 'border-semantic-error' : ''}
+          ${className}
+        `}
         {...props}
       />
       {error && (
-        <p className="mt-1 text-xs text-semantic-error">{error}</p>
+        <p className="mt-2 text-xs text-semantic-error font-mono">{error}</p>
       )}
     </div>
   );
 };
-

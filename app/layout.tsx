@@ -1,11 +1,8 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { personalInfo } from '@/lib/data';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: `${personalInfo.name} - ${personalInfo.title}`,
@@ -20,9 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
+        {/* Grain overlay for texture */}
+        <div className="grain-overlay" aria-hidden="true" />
+        
         <Header />
-        <main className="pt-[60px] min-h-screen">
+        <main className="pt-[80px] min-h-screen relative z-10">
           {children}
         </main>
         <Footer />
@@ -30,4 +30,3 @@ export default function RootLayout({
     </html>
   );
 }
-

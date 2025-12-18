@@ -76,6 +76,25 @@ export const projects: Project[] = [
     year: 2025,
     isMetaProject: true,
   },
+  {
+    id: '4',
+    title: 'Arena Tournament',
+    description: 'A gaming tournament platform where players can compete, organize events, and track their progress.',
+    longDescription: 'Arena Tournament is a comprehensive gaming tournament platform designed to bring competitive gaming to everyone. Players can create and join tournaments, track match results, and climb leaderboards. I spent a significant amount of time on the design process for this one — iterating through multiple concepts and layouts before landing on something that felt right. The result is a clean, intuitive interface that captures the excitement of competitive gaming.',
+    category: 'Web Application',
+    technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+    images: [
+      '/arena_1.png',
+      '/arena_2.png',
+      '/arena_3.png',
+      '/arena_4.png',
+      '/arena_5.png',
+    ],
+    featured: true,
+    challenges: 'Designing an interface that appeals to competitive gamers while remaining accessible. Balancing information density with visual clarity. The design process took considerable time to get right.',
+    solutions: 'Multiple design iterations and feedback loops. Focused on clean typography and a color scheme that evokes competitive energy without being overwhelming.',
+    year: 2025,
+  },
 ];
 
 export const workExperience: WorkExperience[] = [

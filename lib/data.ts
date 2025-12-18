@@ -91,6 +91,7 @@ export const projects: Project[] = [
       '/arena_5.png',
     ],
     featured: true,
+    liveUrl: 'https://arena-tournament.vercel.app/',
     challenges: 'Designing an interface that appeals to competitive gamers while remaining accessible. Balancing information density with visual clarity. The design process took considerable time to get right.',
     solutions: 'Multiple design iterations and feedback loops. Focused on clean typography and a color scheme that evokes competitive energy without being overwhelming.',
     year: 2025,
